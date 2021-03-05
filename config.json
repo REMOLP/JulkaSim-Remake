@@ -1,0 +1,7 @@
+{
+	"customRespStatus": false,
+	"customResp": ["To jest customowa odpowiedź 1", "To jest customowa odpowiedź 2", "To jest customowa odpowiedź 3"],
+	"randomizeResp": false,
+	"looped": true,
+	"stoppingKeywords": ["nara"]
+}
