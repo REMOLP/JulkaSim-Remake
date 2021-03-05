@@ -1,9 +1,26 @@
-julkaAnsw = ["hej", "GÓWNO INCELU", "ZAMKNIJ SIĘ INCELU", "MĘŻCZYŹNI NIE POWINNI MIEĆ PRAW", "O my God... Musze posłuchać KPOPu, wkurwiles mnie Incelu", "ZAMKNIJ SIĘ INCELU", "Jajcooo", "KAPITALIZM POWODUJE NIERÓWNOŚCIIII SOCJALIZM NAJLEPSZY!!!", "MĘŻCZYŹNI NIE POWINNI MIEĆ PRAW"]
+import julkalib
+
+# Domyślne odpowiedzi
+julkaAnsw = ["GÓWNO INCELU", "ZAMKNIJ SIĘ INCELU", "MĘŻCZYŹNI NIE POWINNI MIEĆ PRAW", "O my God... Musze posłuchać KPOPu, wkurwiles mnie Incelu", "Jajcooo", "KAPITALIZM POWODUJE NIERÓWNOŚCIIII SOCJALIZM NAJLEPSZY!!!"]
 
 
-for i in range(len(julkaAnsw)):
-    userInput = input("TY: ")
+julkalib.initConfig()
 
-    print("JULKA:", julkaAnsw[i])
+#-----------------------------#
+# Przed prawidzwym rozpoczęciem
+input("TY: ")
+print("JULKA: Hej!")
+#-----------------------------#
 
-print("Julka rozłączyła się")
+if julkalib.userCustomJulkaAnsw != None:
+    if julkalib.randomizeAnsw == True:
+        julkalib.randomResp(julkalib.userCustomJulkaAnsw, julkalib.loopedAnsw)
+    else:
+        julkalib.typicalResp(julkalib.userCustomJulkaAnsw, julkalib.loopedAnsw)
+else:
+    if julkalib.randomizeAnsw == True:
+        julkalib.randomResp(julkaAnsw, julkalib.loopedAnsw)
+    else:
+        julkalib.typicalResp(julkaAnsw, julkalib.loopedAnsw)
+
+print("Julka rozłączyła się...")
