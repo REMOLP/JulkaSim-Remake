@@ -21,7 +21,7 @@ def fetchConfigData(configFilePath):
     global userCustomJulkaAnsw, loopedAnsw, randomizeAnsw, stoppingKeywords
 
     try:
-        config = open(configFilePath, 'r')
+        config = open(configFilePath, 'r', encoding="utf-8")
     except:
         print("Coś poszło nie tak. Ścieżka do pliku konfiguracyjnego jest nieprawidłowa lub takowy plik nie istnieje.")
         return False
