@@ -4,15 +4,16 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
-import "github.com/bitly/go-simplejson"
+import "gopkg.in/ini.v1"	
 
-var configFilePath = "./config.json";
+var configFilePath = "./config.ini";
 var loopedAnsw = false;
 var randomizeAnsw = false;
 var stoppingKeywords []string;
-var userCustomJulkaAnsw []string;
+var userCustomJulkaAnsw [3]string;
 
 
 
@@ -27,13 +28,26 @@ var userCustomJulkaAnsw []string;
 
 // Na razie chuja nie działa....
 func fetchConfigData() bool {
-	jsonData, err := simplejson.NewFromReader(configFilePath);
+	cfg, err := ini.Load(configFilePath);
 
 	if err != nil{
-		fmt.Println("Gówno :)");
+		fmt.Printf("Gówno :)\t %v", err);
+		os.Exit(1);
 	}
+	
+	randomizeAnsw = cfg.Section("").Key("randomizeResp").MustBool();
+	fmt.Println("randomizeAnsw:\t", randomizeAnsw);
 
-	fmt.Println(jsonData.Get("looped"));
+	loopedAnsw = cfg.Section("").Key("looped").MustBool();
+	fmt.Println("loopedAnsw:\t", loopedAnsw);
+
+	customRespStatus := cfg.Section("").Key("customRespStatus").MustBool();
+
+	if(customRespStatus == true){
+		fmt.Println("'customRespStatus' w pliku konfiguracyjnym jest równy: True!");
+		userCustomJulkaAnsw = [...]string{"Custom1", "Custom2", "Custom3"};
+		fmt.Println("userCustomJulkaAnsw:\t", userCustomJulkaAnsw);
+	}
 
 	return true;
 }
